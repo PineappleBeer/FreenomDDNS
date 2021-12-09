@@ -21,6 +21,8 @@ DDNS服务很多，但得到的都是二级域名，这样有的时候可能不�
 
 # 配置
 
+将这个**freenom_ddns.sh**复制或者创建到目标位置，然后修改里面的参数。
+
 `freenom_email` = Freenom账号
 
 `freenom_passwd` = Freenom密码
@@ -30,6 +32,12 @@ DDNS服务很多，但得到的都是二级域名，这样有的时候可能不�
 `freenom_domain_id` = 目标域名的ID，这个可以在管理界面的链接里找到（不懂可以翻看下面）
 
 倒数第四行的`/scripts/shell/tgpush.sh` 这是一个使用tg bot推送消息的shell，通知运行结果，可以在[TelegramBotPush](https://github.com/PineappleBeer/TelegramBotPush)里了解。
+
+# 使用
+
+例如这个shell的位置是`/scripts/shell/freenom_ddns.sh`
+
+      bash /scripts/shell/freenom_ddns.sh
 
 # 获取Freenom Domain ID
 
