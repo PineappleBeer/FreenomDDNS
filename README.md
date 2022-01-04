@@ -1,3 +1,4 @@
+
 # Freenom DDNS
 
 一个可以自动更新ip到Freenom的shell。
@@ -31,7 +32,7 @@ DDNS服务很多，但得到的都是二级域名，这样有的时候可能不�
 
 `freenom_domain_id` = 目标域名的ID，这个可以在管理界面的链接里找到（不懂可以翻看下面）
 
-倒数第四行的`/scripts/shell/tgpush.sh` 这是一个使用tg bot推送消息的shell，通知运行结果，可以在[TelegramBotPush](https://github.com/PineappleBeer/TelegramBotPush)里了解。
+其中`/scripts/shell/tgpush.sh` 这是一个使用tg bot推送消息的shell，通知运行结果，可以在[TelegramBotPush](https://github.com/PineappleBeer/TelegramBotPush)里了解。不需要的话可以直接删除。
 
 # 使用
 

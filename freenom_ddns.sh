@@ -20,9 +20,14 @@ GET_IP_URL="https://api.ipify.org/"
  
 # get current ip address
 current_ip="$(curl -s "$GET_IP_URL")"
+
+echoAndPush() {
+    echo $1
+    bash /scripts/shell/tgpush.sh $1
+}
  
 if [ -z "$current_ip" ]; then
-    tgMsg="($freenom_domain_name) Could not get current IP address."
+    echoAndPush "($freenom_domain_name) Could not get current IP address."
     exit 1
 fi
  
@@ -40,12 +45,12 @@ loginResult=$(curl --compressed -k -L -c "$cookie_file" \
                    "$LOGIN_URL" 2>&1)
  
 if [ ! -s "$cookie_file" ]; then
-    tgMsg="($freenom_domain_name) Login failed: empty cookie."
+    echoAndPush "($freenom_domain_name) Login failed: empty cookie."
     exit 1
 fi
  
 if echo "$loginResult" | grep -q "/clientarea.php?incorrect=true"; then
-    tgMsg="($freenom_domain_name) Login failed."
+    echoAndPush "($freenom_domain_name) Login failed."
     exit 1
 fi
  
@@ -62,13 +67,11 @@ updateResult=$(curl --compressed -k -L -b "$cookie_file" \
 
  
 if ! echo "$updateResult" | grep -q "name=\"records\[0\]\[value\]\" value=\"$current_ip\""; then
-    tgMsg="Update $current_ip to domain ( $freenom_domain_name ) faild!"
+    echoAndPush "Update $current_ip to domain ( $freenom_domain_name ) faild!"
     exit 1
 else
-    tgMsg="Update $current_ip to domain ( $freenom_domain_name ) successfully!"
+    echoAndPush "Update $current_ip to domain ( $freenom_domain_name ) successfully!"
 fi
-
-bash /scripts/shell/tgpush.sh "$tgMsg"
 
 echo "Logout"
 
